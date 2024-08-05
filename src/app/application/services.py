@@ -5,6 +5,7 @@ from injector import inject
 
 from app.domain import repositories
 from app.domain import services as domain_services
+from app.domain.object_values import CryptoEntries
 
 
 class Service(abc.ABC):
@@ -33,3 +34,12 @@ class CollectAndProcessCryptoDataService(Service):
             await self._crypto_repository.save(crypto)
 
         return cryptos
+
+
+class GetCryptoBidsService(Service):
+    @inject
+    def __init__(self, crypto_repository: repositories.ICryptoRepository) -> None:
+        self._crypto_repository = crypto_repository
+
+    async def execute(self, symbol: str) -> CryptoEntries:
+        return await self._crypto_repository.get_bids(symbol)

@@ -20,3 +20,9 @@ class ICryptoRepository(abc.ABC):
 
     async def get(self, symbol: str) -> Crypto:
         raise NotImplementedError()
+
+    async def get_bids(self, symbol: str) -> List:
+        raise NotImplementedError()
+
+    async def get_asks(self, symbol: str) -> List:
+        raise NotImplementedError()

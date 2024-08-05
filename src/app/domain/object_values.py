@@ -1,3 +1,6 @@
+from typing import List
+from typing import Optional
+
 from pydantic import BaseModel
 from pydantic import computed_field
 
@@ -14,7 +17,7 @@ class OrderEntry(BaseModel):
 
 
 class CryptoEntries(BaseModel):
-    entries: list[OrderEntry]
+    entries: Optional[List[OrderEntry]] = None
     average_value: float = 0.0
     grater_value: OrderEntry = None
     lesser_value: OrderEntry = None
