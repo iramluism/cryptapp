@@ -75,3 +75,12 @@ class CryptoRepository(ICryptoRepository):
         entries = CryptoEntries(**bids_data)
 
         return entries
+
+    async def get_asks(self, symbol) -> CryptoEntries:
+        key = await self._get_symbols_cache_key(symbol)
+        asks = self._cache.get_map_value(key, "asks")
+
+        asks_data = json.loads(asks)
+        entries = CryptoEntries(**asks_data)
+
+        return entries

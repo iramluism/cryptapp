@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from fastapi_injector import Injected
 
 from app.application.services import CollectAndProcessCryptoDataService
+from app.application.services import GetCryptoAsksService
 from app.application.services import GetCryptoBidsService
 from app.presentation.rest import serializers
 
@@ -27,3 +28,15 @@ async def get_bids(
 ):
     bids = await service.execute(symbol)
     return await serializer.to_dict(bids)
+
+
+@router.get("/{symbol}/asks")
+async def get_asks(
+    symbol: str,
+    service: GetCryptoAsksService = Injected(GetCryptoAsksService),
+    serializer: serializers.AsksEntriesSerializer = Injected(
+        serializers.AsksEntriesSerializer
+    ),
+):
+    asks = await service.execute(symbol)
+    return await serializer.to_dict(asks)
