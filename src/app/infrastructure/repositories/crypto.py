@@ -1,5 +1,6 @@
 import json
 from typing import List
+from typing import Optional
 
 from app.domain.aggregates import Crypto
 from app.domain.aggregates import CryptoEntries
@@ -78,18 +79,24 @@ class CryptoRepository(ICryptoRepository):
 
         return crypto
 
-    async def get_bids(self, symbol) -> CryptoEntries:
+    async def get_bids(self, symbol) -> Optional[CryptoEntries]:
         key = await self._get_symbols_cache_key(symbol)
         (bids,) = self._cache.get_map_value(key, ["bids"])
+
+        if bids is None:
+            return None
 
         bids_data = json.loads(bids)
         entries = CryptoEntries(**bids_data)
 
         return entries
 
-    async def get_asks(self, symbol) -> CryptoEntries:
+    async def get_asks(self, symbol) -> Optional[CryptoEntries]:
         key = await self._get_symbols_cache_key(symbol)
         (asks,) = self._cache.get_map_value(key, ["asks"])
+
+        if asks is None:
+            return None
 
         asks_data = json.loads(asks)
         entries = CryptoEntries(**asks_data)

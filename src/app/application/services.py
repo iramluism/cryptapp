@@ -3,6 +3,7 @@ from typing import Any
 
 from injector import inject
 
+from app.domain import exceptions
 from app.domain import repositories
 from app.domain import services as domain_services
 from app.domain.object_values import CryptoEntries
@@ -42,7 +43,12 @@ class GetCryptoBidsService(Service):
         self._crypto_repository = crypto_repository
 
     async def execute(self, symbol: str) -> CryptoEntries:
-        return await self._crypto_repository.get_bids(symbol)
+        bids = await self._crypto_repository.get_bids(symbol)
+
+        if not bids:
+            raise exceptions.CryptoNotFoundException()
+
+        return bids
 
 
 class GetCryptoAsksService(Service):
@@ -51,7 +57,12 @@ class GetCryptoAsksService(Service):
         self._crypto_repository = crypto_repository
 
     async def execute(self, symbol: str) -> CryptoEntries:
-        return await self._crypto_repository.get_asks(symbol)
+        asks = await self._crypto_repository.get_asks(symbol)
+
+        if not asks:
+            raise exceptions.CryptoNotFoundException()
+
+        return asks
 
 
 class GetCryptoService(Service):
@@ -60,4 +71,9 @@ class GetCryptoService(Service):
         self._crypto_repository = crypto_repository
 
     async def execute(self, symbol: str) -> Any:
-        return await self._crypto_repository.get(symbol)
+        crypto = await self._crypto_repository.get(symbol)
+
+        if not crypto:
+            raise exceptions.CryptoNotFoundException()
+
+        return crypto
