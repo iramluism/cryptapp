@@ -30,4 +30,6 @@ class CollectAndProcessCryptoDataService(Service):
             crypto.bids = await self._process_crypto_entries_srv.execute(crypto.bids)
             crypto.asks = await self._process_crypto_entries_srv.execute(crypto.asks)
 
+            await self._crypto_repository.save(crypto)
+
         return cryptos

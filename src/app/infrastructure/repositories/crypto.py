@@ -1,13 +1,10 @@
+import json
 from typing import List
 
 from app.domain.aggregates import Crypto
 from app.domain.aggregates import CryptoEntries
 from app.domain.repositories import ICryptoRepository
-from app.domain.repositories import IDataSource
-
-
-class DataSource(IDataSource):
-    blockchain_api_provider = None
+from app.infrastructure.repositories.data_source import DataSource
 
 
 class CryptoRepository(ICryptoRepository):
@@ -50,8 +47,22 @@ class CryptoRepository(ICryptoRepository):
 
         return cryptos
 
-    async def save(self, crypto):
-        pass
+    async def _get_symbols_cache_key(self, symbol):
+        return f"crypto_symbol_{symbol}"
+
+    async def save(self, crypto: Crypto):
+        key = await self._get_symbols_cache_key(crypto.symbol)
+
+        crypto_data = crypto.model_dump()
+
+        self._cache.save_map(
+            key,
+            {
+                "symbol": crypto.symbol,
+                "bids": json.dumps(crypto_data.get("bids") or []),
+                "asks": json.dumps(crypto_data.get("asks") or []),
+            },
+        )
 
     async def get(self, symbol):
         pass

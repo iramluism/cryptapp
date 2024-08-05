@@ -20,7 +20,7 @@ class Cache:
         return self._redis_cli.ping()
 
     def save_map(self, key, data: Dict[str, str]):
-        self._redis_cli.hset(key, data)
+        self._redis_cli.hset(key, mapping=data)
 
     def add_to_set(self, key, value):
         self._redis_cli.sadd(key, value)
