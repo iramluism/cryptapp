@@ -1,10 +1,16 @@
 from pydantic import BaseModel
+from pydantic import computed_field
 
 
 class OrderEntry(BaseModel):
     px: float
     qty: float
     num: int
+
+    @computed_field
+    @property
+    def value(self) -> float:
+        return self.px * self.qty
 
 
 class CryptoEntries(BaseModel):

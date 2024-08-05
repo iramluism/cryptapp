@@ -42,7 +42,7 @@ class CryptoRepository(ICryptoRepository):
             )
             cryptos.append(crypto)
 
-        return crypto
+        return cryptos
 
     async def collect(self) -> List[Crypto]:
         symbols = await self._collect_symbols()
