@@ -1,4 +1,10 @@
 pydantic==2.5.3
 fastapi==0.111.0
+fastapi-injector==0.6.0
+injector==0.22.0
+requests==2.32.3
 python-decouple==3.8
 simple-settings==1.2.0
+redis==5.0.8
+pandas==2.2.2
+celery==5.4.0

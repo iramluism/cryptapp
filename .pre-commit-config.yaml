@@ -15,7 +15,7 @@ repos:
       name: "isort: reformat imports (order and remove duplicated imports)"
       language: python
       entry: isort
-      files: app|tests
+      files: src
       stages: [commit]
       exclude: (static|templates)
       args: [--cr setup.cfg]
@@ -23,7 +23,7 @@ repos:
     - id: black
       name: "black: reformat python code (max line length, syntax, double quotes, etc)"
       entry: black
-      files: app|tests
+      files: src
       language: python
       exclude: (static|templates)
       exclude_types:
@@ -32,7 +32,7 @@ repos:
     - id: flake8
       name: "flake8: check python code"
       stages: [commit]
-      files: app|tests
+      files: src
       language: system
       exclude: (static|templates)
       entry: flake8 --config setup.cfg

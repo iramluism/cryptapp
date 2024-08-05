@@ -1,0 +1,24 @@
+
+services:
+  run_tests: 
+    build:
+      context: ./../
+      dockerfile: ./deployments/DockerfileRunTests
+    ports: 
+      - 8000:8000
+    networks:
+      - test_cryptapp_network
+    environment:
+      - REDIS_SERVER_HOST=redis_cache
+      - REDIS_SERVER_PORT=6379
+
+  redis_cache:
+    image: redis
+    ports:
+      - '6379:6379'
+    networks:
+      - test_cryptapp_network
+
+networks:
+  test_cryptapp_network:
+    driver: bridge
