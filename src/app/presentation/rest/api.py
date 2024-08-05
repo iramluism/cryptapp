@@ -8,8 +8,8 @@ from app.presentation.rest.routers import tools_router
 
 
 def setup_app_routers(app: FastAPI) -> None:
-    app.include_router(tools_router, prefix="/tools", tags=["tools"])
-    app.include_router(crypto_router, prefix="/crypto", tags=["crypto"])
+    app.include_router(tools_router, tags=["tools"])
+    app.include_router(crypto_router, tags=["crypto"])
 
 
 def create_app():

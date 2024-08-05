@@ -56,6 +56,6 @@ from tests import stubs
     indirect=["crypto"],
 )
 def test_get_bids(crypto, expected_response, rest_api):
-    response = rest_api.get(f"/crypto/{crypto.symbol}/bids")
+    response = rest_api.get(f"/cryptos/{crypto.symbol}/bids")
     assert response.status_code == 200
     assert response.json() == expected_response

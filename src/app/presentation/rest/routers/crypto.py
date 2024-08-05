@@ -7,7 +7,9 @@ from app.application.services import GetCryptoBidsService
 from app.application.services import GetCryptoService
 from app.presentation.rest import serializers
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/cryptos",
+)
 
 
 @router.post("/collect")
