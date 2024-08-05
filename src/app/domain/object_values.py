@@ -23,3 +23,5 @@ class CryptoEntries(BaseModel):
     lesser_value: OrderEntry = None
     total_qty: float = 0.0
     total_px: float = 0.0
+    total_value: float = 0.0
+    count: int = 0

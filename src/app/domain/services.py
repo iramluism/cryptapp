@@ -28,6 +28,8 @@ class ProcessCyptoEntriesService(DomainService):
 
         total_qty = df["qty"].sum()
         total_px = df["px"].sum()
+        total_value = df["value"].sum()
+        count = len(df)
         average_value = df["value"].mean()
         greater_value = df.loc[df["value"].idxmax()]
         lesser_value = df.loc[df["value"].idxmin()]
@@ -47,4 +49,6 @@ class ProcessCyptoEntriesService(DomainService):
             ),
             total_qty=total_qty,
             total_px=total_px,
+            total_value=total_value,
+            count=count,
         )

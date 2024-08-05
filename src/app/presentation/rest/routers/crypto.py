@@ -4,6 +4,7 @@ from fastapi_injector import Injected
 from app.application.services import CollectAndProcessCryptoDataService
 from app.application.services import GetCryptoAsksService
 from app.application.services import GetCryptoBidsService
+from app.application.services import GetCryptoService
 from app.presentation.rest import serializers
 
 router = APIRouter()
@@ -16,6 +17,18 @@ async def collect_data(
     ),
 ):
     return await service.execute()
+
+
+@router.get("/{symbol}")
+async def get_crypto(
+    symbol: str,
+    service: GetCryptoService = Injected(GetCryptoService),
+    serializer: serializers.GenericCryptoDataSerializer = Injected(
+        serializers.GenericCryptoDataSerializer
+    ),
+):
+    bids = await service.execute(symbol)
+    return await serializer.to_dict(bids)
 
 
 @router.get("/{symbol}/bids")

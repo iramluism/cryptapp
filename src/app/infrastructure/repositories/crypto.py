@@ -65,11 +65,22 @@ class CryptoRepository(ICryptoRepository):
         )
 
     async def get(self, symbol):
-        pass
+        key = await self._get_symbols_cache_key(symbol)
+        symbol, bids, asks = self._cache.get_map_value(key, ["symbol", "bids", "asks"])
+
+        crypto_values = {
+            "symbol": symbol,
+            "bids": json.loads(bids),
+            "asks": json.loads(asks),
+        }
+
+        crypto = Crypto(**crypto_values)
+
+        return crypto
 
     async def get_bids(self, symbol) -> CryptoEntries:
         key = await self._get_symbols_cache_key(symbol)
-        bids = self._cache.get_map_value(key, "bids")
+        (bids,) = self._cache.get_map_value(key, ["bids"])
 
         bids_data = json.loads(bids)
         entries = CryptoEntries(**bids_data)
@@ -78,7 +89,7 @@ class CryptoRepository(ICryptoRepository):
 
     async def get_asks(self, symbol) -> CryptoEntries:
         key = await self._get_symbols_cache_key(symbol)
-        asks = self._cache.get_map_value(key, "asks")
+        (asks,) = self._cache.get_map_value(key, ["asks"])
 
         asks_data = json.loads(asks)
         entries = CryptoEntries(**asks_data)

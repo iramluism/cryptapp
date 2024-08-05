@@ -28,5 +28,5 @@ class Cache:
     def get_set(self, key):
         return self._redis_cli.smembers(key)
 
-    def get_map_value(self, key, field):
-        return self._redis_cli.hget(key, field)
+    def get_map_value(self, key, fields):
+        return self._redis_cli.hmget(key, fields)

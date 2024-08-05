@@ -52,3 +52,12 @@ class GetCryptoAsksService(Service):
 
     async def execute(self, symbol: str) -> CryptoEntries:
         return await self._crypto_repository.get_asks(symbol)
+
+
+class GetCryptoService(Service):
+    @inject
+    def __init__(self, crypto_repository: repositories.ICryptoRepository) -> None:
+        self._crypto_repository = crypto_repository
+
+    async def execute(self, symbol: str) -> Any:
+        return await self._crypto_repository.get(symbol)

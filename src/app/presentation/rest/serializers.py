@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+from app.domain.aggregates import Crypto
+
 
 class CryptoData(BaseModel):
     average_value: float
@@ -15,6 +17,12 @@ class BidsCryptoEntriesResponse(BaseModel):
 
 class AsksCryptoEntriesResponse(BaseModel):
     asks: CryptoData
+
+
+class GenericCryptoData(BaseModel):
+    count: int
+    qty: float
+    value: float
 
 
 class Serializer:
@@ -51,4 +59,24 @@ class AsksEntriesSerializer(Serializer):
         }
 
         output = AsksCryptoEntriesResponse(**asks_entries_output)
+        return output
+
+
+class GenericCryptoDataSerializer(Serializer):
+    async def to_dict(self, obj: Crypto) -> dict:
+        output = {
+            obj.symbol: {
+                "bids": {
+                    "count": obj.bids.count,
+                    "qty": obj.bids.total_qty,
+                    "value": obj.bids.total_value,
+                },
+                "asks": {
+                    "count": obj.asks.count,
+                    "qty": obj.asks.total_qty,
+                    "value": obj.asks.total_value,
+                },
+            }
+        }
+
         return output
