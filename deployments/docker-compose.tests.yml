@@ -9,10 +9,10 @@ services:
     networks:
       - test_cryptapp_network
     environment:
-      - REDIS_SERVER_HOST=redis_cache
+      - REDIS_SERVER_HOST=test_redis_cache
       - REDIS_SERVER_PORT=6379
 
-  redis_cache:
+  test_redis_cache:
     image: redis
     ports:
       - '6379:6379'
