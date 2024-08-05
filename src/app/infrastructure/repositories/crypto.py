@@ -65,9 +65,12 @@ class CryptoRepository(ICryptoRepository):
             },
         )
 
-    async def get(self, symbol):
+    async def get(self, symbol) -> Optional[Crypto]:
         key = await self._get_symbols_cache_key(symbol)
         symbol, bids, asks = self._cache.get_map_value(key, ["symbol", "bids", "asks"])
+
+        if not symbol:
+            return None
 
         crypto_values = {
             "symbol": symbol,
