@@ -13,7 +13,7 @@ ORDER_ENTRY = {
 CRYPTO_ENTRIES = {
     "entries": None,
     "average_value": 0.0,
-    "grater_value": None,
+    "greater_value": None,
     "lesser_value": None,
     "total_qty": 0.0,
     "total_px": 0.0,

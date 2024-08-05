@@ -37,7 +37,7 @@ class ProcessCyptoEntriesService(DomainService):
         return CryptoEntries(
             entries=crypto_entries.entries,
             average_value=average_value,
-            grater_value=OrderEntry(
+            greater_value=OrderEntry(
                 px=greater_value["px"],
                 qty=greater_value["qty"],
                 num=greater_value["num"],

@@ -20,7 +20,7 @@ from tests import stubs
                         ),
                     ],
                     average_value=0.0,
-                    grater_value=stubs.get_order_entry(
+                    greater_value=stubs.get_order_entry(
                         px=49765.77, qty=0.08333333, num=844440551224212
                     ),
                     lesser_value=stubs.get_order_entry(
@@ -35,7 +35,7 @@ from tests import stubs
             {
                 "bids": {
                     "average_value": 0.0,
-                    "grater_value": {
+                    "greater_value": {
                         "num": 844440551224212,
                         "px": 49765.77,
                         "qty": 0.08333333,

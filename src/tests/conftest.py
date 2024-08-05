@@ -33,7 +33,7 @@ def redis_cli(settings):
         db=settings.REDIS_CACHE_DB,
     )
     yield client
-    client.flushdb()
+    # client.flushdb()
 
 
 @pytest.fixture

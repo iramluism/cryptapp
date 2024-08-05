@@ -31,7 +31,7 @@ LESSER_VALUE = min(CRYPTO_ENTRIES, key=lambda entry: entry.value)
             CryptoEntries(
                 entries=CRYPTO_ENTRIES,
                 average_value=AVERAGE_VALUE,
-                grater_value=GREATER_VALUE,
+                greater_value=GREATER_VALUE,
                 lesser_value=LESSER_VALUE,
                 total_qty=TOTAL_QTY,
                 total_px=TOTAL_PX,

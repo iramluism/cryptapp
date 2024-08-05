@@ -5,7 +5,7 @@ from app.domain.aggregates import Crypto
 
 class CryptoData(BaseModel):
     average_value: float
-    grater_value: dict
+    greater_value: dict
     lesser_value: dict
     total_qty: float
     total_px: float
@@ -35,7 +35,7 @@ class BidsEntriesSerializer(Serializer):
         bids_entries_output = {
             "bids": {
                 "average_value": obj.average_value,
-                "grater_value": obj.grater_value.dict(),
+                "greater_value": obj.greater_value.dict(),
                 "lesser_value": obj.lesser_value.dict(),
                 "total_qty": obj.total_qty,
                 "total_px": obj.total_px,
@@ -51,7 +51,7 @@ class AsksEntriesSerializer(Serializer):
         asks_entries_output = {
             "asks": {
                 "average_value": obj.average_value,
-                "grater_value": obj.grater_value.dict(),
+                "greater_value": obj.greater_value.dict(),
                 "lesser_value": obj.lesser_value.dict(),
                 "total_qty": obj.total_qty,
                 "total_px": obj.total_px,
