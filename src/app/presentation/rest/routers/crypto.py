@@ -12,4 +12,4 @@ async def collect_data(
         CollectAndProcessCryptoDataService
     ),
 ):
-    return service.execute()
+    return await service.execute()

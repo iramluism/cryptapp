@@ -8,10 +8,9 @@ class OrderEntry(BaseModel):
 
 
 class CryptoEntries(BaseModel):
-    symbol: str
     entries: list[OrderEntry]
-    average_value: float
-    grater_value: OrderEntry
-    lesser_value: OrderEntry
-    total_qty: float
-    total_px: float
+    average_value: float = 0.0
+    grater_value: OrderEntry = None
+    lesser_value: OrderEntry = None
+    total_qty: float = 0.0
+    total_px: float = 0.0

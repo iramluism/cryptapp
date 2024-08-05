@@ -12,11 +12,11 @@ class ICryptoRepository(abc.ABC):
     def __ini__(self, data_source: IDataSource) -> None:
         self.data_source = data_source
 
-    def collect(self) -> List[Crypto]:
+    async def collect(self) -> List[Crypto]:
         raise NotImplementedError()
 
-    def save(self, crypto: Crypto) -> None:
+    async def save(self, crypto: Crypto) -> None:
         raise NotImplementedError()
 
-    def get(self, symbol: str) -> Crypto:
+    async def get(self, symbol: str) -> Crypto:
         raise NotImplementedError()
