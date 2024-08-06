@@ -52,11 +52,10 @@ Check this links:
 
 ## How run the project
 
+### Prerequisites:
 
-Prerequisites:
-1. A redis server up. You can use one of the docker defined services, check this [How run the project with docker?](#how-run-the-project-with-docker)
-2. python3.10 installed and configurated. 
-3. Write access in the root folder of the project.
+- Docker should be installed before run the project. Go to this link to check [How install docker](#installing-docker)
+
 
 Execute the following command
 ```bash
