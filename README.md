@@ -6,12 +6,13 @@
 1. [Introduction](#introduction)
 2. [Components](#components)
 3. [Arquitecture](#arquitecture)
-4. [Api Docs](#api-docs)
-5. [Prerequisites](#prerequisites)
-6. [Dependencies](#dependencies)
-7. [Installing Docker](#installing-docker)
-8. [How run the Project](#how-run-the-project)
-9. [Run Tests](#run-tests)
+4. [Project Structure](#project-structure)
+5. [Api Docs](#api-docs)
+6. [Prerequisites](#prerequisites)
+7. [Dependencies](#dependencies)
+8. [Installing Docker](#installing-docker)
+9. [How run the Project](#how-run-the-project)
+10. [Run Tests](#run-tests)
 
 
 ## Introduction
@@ -23,6 +24,30 @@ Go to this page [Components](./docs/components.md)
 
 ## Api Docs
 Go to this page [Api Doc](./docs/endpoints.md)
+
+## Project Structure
+```
+cryptapp/
+.
+├── deployments # Deployment Specification
+├── requirements 
+│   ├── dev.txt # Requirements for Dev 
+│   ├── prod.txt # Requirements for Prod 
+│   └── tests.txt # Requirements for Tests
+└── src
+    ├── app
+    │   ├── application # application layer 
+    │   ├── domain # domain layer 
+    │   ├── infrastructure # infrastructure layer 
+    │   ├── presentation # Presentation layer 
+    │   │   └── rest # REST API
+    │   └── settings.py # General Settings of Project 
+    └── tests
+        ├── conftest.py # tests fixtures
+        ├── integration # Integration Tests 
+        ├── stubs # Tests stubs
+        └── unit # Unit tests
+```
 
 ## Prerequisites
 Before installing Docker, ensure you have the following:
