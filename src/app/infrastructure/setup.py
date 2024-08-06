@@ -1,3 +1,4 @@
+import asyncio
 import importlib
 from typing import Optional
 
@@ -26,6 +27,20 @@ def get_data_source():
 
     data_source = data_source_cls(**kwargs)
     return data_source
+
+
+def setup_task(task_definition):
+    injector = setup_dependencies()
+
+    def wrapper(*args, **kwargs):
+        loop = asyncio.get_event_loop()
+
+        async def task():
+            return await injector.call_with_injection(task_definition, *args, **kwargs)
+
+        return loop.run_until_complete(task())
+
+    return wrapper
 
 
 def setup_dependencies(injector: Optional[Injector] = None) -> Injector:

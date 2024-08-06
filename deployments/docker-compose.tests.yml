@@ -4,8 +4,6 @@ services:
     build:
       context: ./../
       dockerfile: ./deployments/DockerfileRunTests
-    ports: 
-      - 8000:8000
     networks:
       - test_cryptapp_network
     environment:

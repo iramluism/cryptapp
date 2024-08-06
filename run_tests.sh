@@ -1,5 +1,4 @@
 #!/bin/sh
-# start.sh
 
 docker compose -f ./deployments/docker-compose.tests.yml build
 docker compose -f ./deployments/docker-compose.tests.yml up -d
