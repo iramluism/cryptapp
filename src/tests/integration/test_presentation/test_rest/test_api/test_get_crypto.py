@@ -32,3 +32,12 @@ def test_get_crypto(crypto, expected_response, rest_api):
 
     assert response.status_code == 200
     assert response.json() == expected_response
+
+
+def test_not_found_crypto(rest_api):
+    response = rest_api.get("/cryptos/INVALID")
+
+    expected_response = {"status": 404001, "message": "CRYPTO_NOT_FOUND"}
+
+    assert response.json() == expected_response
+    assert response.status_code == 404

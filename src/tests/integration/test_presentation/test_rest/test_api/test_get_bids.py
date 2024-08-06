@@ -59,3 +59,12 @@ def test_get_bids(crypto, expected_response, rest_api):
     response = rest_api.get(f"/cryptos/{crypto.symbol}/bids")
     assert response.status_code == 200
     assert response.json() == expected_response
+
+
+def test_not_found_crypto(rest_api):
+    response = rest_api.get("/cryptos/INVALID/bids")
+
+    expected_response = {"status": 404001, "message": "CRYPTO_NOT_FOUND"}
+
+    assert response.json() == expected_response
+    assert response.status_code == 404
