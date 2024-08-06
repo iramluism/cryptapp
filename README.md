@@ -1,4 +1,4 @@
-# Tic Tac Toe Game
+# CryptApp
 
 ![Alt text](./docs/images/components.png)
 
